@@ -1,0 +1,184 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: FSL - Finite State Language
+scopeName: source.fsl
+fileTypes: [fsl]
+uuid: a4042269-e571-45d1-a332-d52b678edf75
+
+
+
+repository:
+
+
+
+
+patterns:
+
+- comment: block comment
+  begin: /\*
+  captures:
+    '0':
+      name: punctuation.definition.comment.mn
+  end: \*/
+  name: comment.block.fsl
+
+- comment: block comment
+  begin: "//"
+  end: '$'
+  name: comment.line.fsl
+
+
+
+- comment: js outcalls
+  name: keyword.other
+  begin: '\${'
+  captures:
+    '0':
+      name: entity.name.function
+  end: '}'
+
+
+
+- comment: semver
+  name: constant.numeric
+  match: ([0-9]*)(\.)([0-9]*)(\.)([0-9]*)
+
+
+
+- comment: fsl language directive
+  name: constant.language.fslLanguage.directive
+  match: graph_layout(\s*)(:)
+
+- comment: fsl language directive
+  name: constant.language.fslLanguage.directive
+  match: machine_name(\s*)(:)
+
+- comment: fsl language directive
+  name: constant.language.fslLanguage.directive
+  match: machine_version(\s*)(:)
+
+- comment: fsl language directive
+  name: constant.language.fslLanguage.directive
+  match: machine_author(\s*)(:)
+
+- comment: fsl language directive
+  name: constant.language.fslLanguage.directive
+  match: machine_contributor(\s*)(:)
+
+- comment: fsl language directive
+  name: constant.language.fslLanguage.directive
+  match: machine_comment(\s*)(:)
+
+- comment: fsl language directive
+  name: constant.language.fslLanguage.directive
+  match: machine_definition(\s*)(:)
+
+- comment: fsl language directive
+  name: constant.language.fslLanguage.directive
+  match: machine_reference(\s*)(:)
+
+- comment: fsl language directive
+  name: constant.language.fslLanguage.directive
+  match: machine_license(\s*)(:)
+
+- comment: fsl language directive
+  name: constant.language.fslLanguage.directive
+  match: machine_repositories(\s*)(:)
+
+- comment: fsl language directive
+  name: constant.language.fslLanguage.directive
+  match: machine_language(\s*)(:)
+
+- comment: fsl language directive
+  name: constant.language.fslLanguage.directive
+  match: fsl_version(\s*)(:)
+
+
+
+- comment: transitions
+  name: keyword.control.transition.fslArrow.legal_legal
+  match: (<->|↔)
+
+- comment: transitions
+  name: keyword.control.transition.fslArrow.legal_none
+  match: (<-|←)
+
+- comment: transitions
+  name: keyword.control.transition.fslArrow.none_legal
+  match: (->|→)
+
+- comment: transitions
+  name: keyword.control.transition.fslArrow.main_main
+  match: (<=>|⇔)
+
+- comment: transitions
+  name: keyword.control.transition.fslArrow.none_main
+  match: (=>|⇒)
+
+- comment: transitions
+  name: keyword.control.transition.fslArrow.main_none
+  match: (<=|⇐)
+
+- comment: transitions
+  name: keyword.control.transition.fslArrow.forced_forced
+  match: (<~>|↮)
+
+- comment: transitions
+  name: keyword.control.transition.fslArrow.none_forced
+  match: (~>|↛)
+
+- comment: transitions
+  name: keyword.control.transition.fslArrow.forced_none
+  match: (<~|↚)
+
+- comment: transitions
+  name: keyword.control.transition.fslArrow.legal_main
+  match: (<-=>|←⇒)
+
+- comment: transitions
+  name: keyword.control.transition.fslArrow.main_legal
+  match: (<=->|⇐→)
+
+- comment: transitions
+  name: keyword.control.transition.fslArrow.legal_forced
+  match: (<-~>|←↛)
+
+- comment: transitions
+  name: keyword.control.transition.fslArrow.forced_legal
+  match: (<~->|↚→)
+
+- comment: transitions
+  name: keyword.control.transition.fslArrow.main_forced
+  match: (<=~>|⇐↛)
+
+- comment: transitions
+  name: keyword.control.transition.fslArrow.forced_main
+  match: (<~=>|↚⇒)
+
+
+
+- comment: action annotation
+  name: constant.character.fslAction
+  match: \'[^']*\'
+
+
+
+- comment: named ordered list
+  name: constant.character.namedOrderedList
+  match: \&[a-zA-Z0-9_]
+
+
+
+- comment: edge probability annotation
+  name: constant.numeric.fslProbability
+  match: ([0-9]+)%
+
+
+
+- comment: fsl label annotation
+  name: entity.name.tag.fslLabel.doublequoted
+  match: \"[^"]*\"
+
+- comment: fsl label annotation
+  name: entity.name.tag.fslLabel.atom
+  match: ([a-zA-Z0-9_.+&()#@!?,])
