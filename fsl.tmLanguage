@@ -321,8 +321,6 @@
 			<string>entity.name.tag.fslLabel.atom</string>
 		</dict>
 	</array>
-	<key>repository</key>
-	<false/>
 	<key>scopeName</key>
 	<string>source.fsl</string>
 	<key>uuid</key>
