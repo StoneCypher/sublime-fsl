@@ -1,0 +1,191 @@
+%YAML 1.2
+---
+file_extensions:
+  - fsl
+scope: source.fsl
+contexts:
+  main:
+    - match: '/\*'
+      scope: punctuation.definition.comment.begin.fsl
+      push: block_comment
+
+    - match: '"'
+      scope: punctuation.definition.string.begin.fsl
+      push: double_quoted_string
+
+    - match: "'"
+      scope: keyword.control.action.begin.fsl
+      push: single_quoted_string
+
+    - match: '//'
+      scope: punctuation.definition.comment.fsl
+      push: line_comment
+
+    # Machine attributes
+    - match: 'machine_name[\s]*:'
+      scope: entity.other.attribute-name.machine_name.fsl
+
+    - match: 'machine_author[\s]*:'
+      scope: entity.other.attribute-name.machine_author.fsl
+
+    - match: 'machine_comment[\s]*:'
+      scope: entity.other.attribute-name.machine_comment.fsl
+
+    - match: 'machine_definition[\s]*:'
+      scope: entity.other.attribute-name.machine_definition.fsl
+
+    - match: 'machine_contributor[\s]*:'
+      scope: entity.other.attribute-name.machine_contributor.fsl
+
+    - match: 'machine_definition[\s]*:'
+      scope: entity.other.attribute-name.machine_definition.fsl
+
+    - match: 'machine_reference[\s]*:'
+      scope: entity.other.attribute-name.machine_reference.fsl
+
+    - match: 'machine_version[\s]*:'
+      scope: entity.other.attribute-name.machine_version.fsl
+      push: semver_attr_end
+
+    - match: 'machine_license[\s]*:'
+      scope: entity.other.attribute-name.machine_license.fsl
+
+    - match: 'machine_language[\s]*:'
+      scope: entity.other.attribute-name.machine_language.fsl
+
+    - match: 'machine_origin[\s]*:'
+      scope: entity.other.attribute-name.machine_origin.fsl
+
+    - match: 'graph_layout[\s]*:'
+      scope: entity.other.attribute-name.graph_layout.fsl
+
+    - match: 'start_states[\s]*:'
+      scope: entity.other.attribute-name.start_states.fsl
+
+    - match: 'end_states[\s]*:'
+      scope: entity.other.attribute-name.end_states.fsl
+
+    - match: 'state[\s]*:'
+      scope: entity.other.attribute-name.state_defaults.fsl
+
+    - match: 'transition[\s]*:'
+      scope: entity.other.attribute-name.end_states.fsl
+
+    - match: 'state[\s]*[a-zA-Z0-9\"]+[\s]*:'
+      scope: support.constant.state_decl.fsl
+
+    - match: 'arrange[\s]*[\[][^\]]*[\]][\s]*;'
+      scope: support.constant.state_decl.fsl
+
+    - match: 'fsl_version[\s]*:'
+      scope: entity.other.attribute-name.fsl_version.fsl
+      push: semver_attr_end
+
+    - match: 'machine_theme[\s]*:'
+      scope: entity.other.attribute-name.machine_theme.fsl
+
+    - match: 'flow[\s]*:'
+      scope: entity.other.attribute-name.flow.fsl
+
+    - match: 'dot_preamble[\s]*:'
+      scope: entity.other.attribute-name.dot_preamble.fsl
+
+    # # Numbers
+    # - match: '\b(-)?[0-9.]+.[0-9.]+.[0-9.]+\b'
+    #   scope: entity.other.inherited-class.semver.fsl
+
+    # Numbers
+    - match: '\b(-)?[0-9.]+\b'
+      scope: constant.numeric.fsl
+
+    - match: (<->|↔)
+      scope: constant.other.symbol.transition.fslArrow.legal_legal.fsl
+
+    - match: (<-|←)
+      scope: constant.other.symbol.transition.fslArrow.legal_none.fsl
+
+    - match: (->|→)
+      scope: constant.other.symbol.transition.fslArrow.none_legal.fsl
+
+    - match: (<=>|⇔)
+      scope: constant.other.symbol.transition.fslArrow.main_main.fsl
+
+    - match: (=>|⇒)
+      scope: constant.other.symbol.transition.fslArrow.none_main.fsl
+
+    - match: (<=|⇐)
+      scope: constant.other.symbol.transition.fslArrow.main_none.fsl
+
+    - match: (<~>|↮)
+      scope: constant.other.symbol.transition.fslArrow.forced_forced.fsl
+
+    - match: (~>|↛)
+      scope: constant.other.symbol.transition.fslArrow.none_forced.fsl
+
+    - match: (<~|↚)
+      scope: constant.other.symbol.transition.fslArrow.forced_none.fsl
+
+    - match: (<-=>|←⇒)
+      scope: constant.other.symbol.transition.fslArrow.legal_main.fsl
+
+    - match: (<=->|⇐→)
+      scope: constant.other.symbol.transition.fslArrow.main_legal.fsl
+
+    - match: (<-~>|←↛)
+      scope: constant.other.symbol.transition.fslArrow.legal_forced.fsl
+
+    - match: (<~->|↚→)
+      scope: constant.other.symbol.transition.fslArrow.forced_legal.fsl
+
+    - match: (<=~>|⇐↛)
+      scope: constant.other.symbol.transition.fslArrow.main_forced.fsl
+
+    - match: (<~=>|↚⇒)
+      scope: constant.other.symbol.transition.fslArrow.forced_main.fsl
+
+    - match: ;
+      scope: constant.other.symbol.terminal.fsl
+
+    - match: ([\:])
+      scope: constant.other.symbol.separator.fsl
+
+    - match: ([\[\]])
+      scope: constant.other.symbol.list.fsl
+
+    - match: ([\{\}])
+      scope: constant.other.symbol.object.fsl
+
+  block_comment:
+    - meta_scope: comment.block.fsl
+    - match: '\*/'
+      scope: punctuation.definition.comment.end.fsl
+      pop: true
+
+  double_quoted_string:
+    - meta_scope: string.quoted.double.fsl
+    - match: '\\.'
+      scope: constant.character.escape.fsl
+    - match: '"'
+      scope: punctuation.definition.string.end.fsl
+      pop: true
+
+  single_quoted_string:
+    - meta_scope: keyword.control.action.fsl
+    - match: '\\.'
+      scope: constant.character.escape.fsl
+    - match: "'"
+      scope: keyword.control.action.end.fsl
+      pop: true
+
+  line_comment:
+    - meta_scope: comment.line.fsl
+    - match: $
+      pop: true
+
+  semver_attr_end:
+    - meta_scope: entity.other.attribute-name.fsl
+    - match: '\b(-)?[0-9.]+.[0-9.]+.[0-9.]+\b'
+      scope: variable.parameter.semver.fsl
+    - match: ';'
+      scope: constant.other.symbol.terminal.fsl
+      pop: true
