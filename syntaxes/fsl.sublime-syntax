@@ -1,5 +1,7 @@
 %YAML 1.2
 ---
+# dev in C:\Users\john\AppData\Roaming\Sublime Text 3\Packages\User
+
 file_extensions:
   - fsl
 scope: source.fsl
